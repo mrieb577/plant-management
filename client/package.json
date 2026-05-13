@@ -1,5 +1,5 @@
 {
-  "name": "electron-react-boilerplate",
+  "name": "plant-management",
   "description": "A foundation for scalable desktop apps",
   "keywords": [
     "electron",
@@ -12,26 +12,20 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
+  "homepage": "https://github.com/mrieb577/plant-management#readme",
   "bugs": {
-    "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
+    "url": "https://github.com/mrieb577/plant-management/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
+    "url": "git+https://github.com/mrieb577/plant-management.git"
   },
   "license": "MIT",
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://electron-react-boilerplate.js.org"
+    "name": "Morgan Rieb"
   },
   "contributors": [
-    {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
-    }
+
   ],
   "main": "./.erb/dll/main.bundle.dev.js",
   "scripts": {
