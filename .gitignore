@@ -30,3 +30,4 @@ npm-debug.log.*
 
 db_vars.py
 Credentials.java
+__pycache__
