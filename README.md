@@ -4,9 +4,9 @@ A fork of the [Electron React Boilerplate](https://github.com/electron-react-boi
 
 `mvn spring-boot:run`
 `npm start`
+`mysql -u root -p`
 
-
-# Roadmap
+## Roadmap
 
 - database
 - requests
