@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.mrieb577.database.DatabaseConnection;
 import com.mrieb577.objects.Plant;
 
@@ -27,8 +28,9 @@ public class Main {
     @CrossOrigin(origins = "http://localhost:1212")
     @GetMapping("/plant")
     public String plant(){
+        Gson gson = new Gson();
         DatabaseConnection db = new DatabaseConnection();
         Plant p = db.query("select * from plants limit 1;");
-        return p.toString();
+        return gson.toJson(p);
     }
 }

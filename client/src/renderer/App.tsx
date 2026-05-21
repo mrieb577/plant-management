@@ -10,7 +10,10 @@ function Hello() {
       <h1>Plant Management</h1>
       <p>{message} </p>
       <button onClick={() => {
-        axios.get("http://[::1]:8080/plant").then((response) => setMessage(response.data)).catch((err) => setMessage(err.message));
+        axios.get("http://[::1]:8080/plant").then((response) => {
+          console.log(response.data);
+          setMessage(JSON.stringify(response.data));
+        }).catch((err) => {setMessage(err.message)});
       }}>Make Request</button>
     </div>
   );
