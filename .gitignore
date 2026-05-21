@@ -31,4 +31,4 @@ npm-debug.log.*
 db_vars.py
 Credentials.java
 __pycache__/
-plantmanagement/target/
+target/
