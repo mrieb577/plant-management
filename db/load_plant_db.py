@@ -20,6 +20,7 @@ cursor.execute("delete from plants")
 
 insert_query = "insert into plants (symbol, synonym_symbol, scientific_name, author, common_name, family) values (\"{}\", \"{}\", \"{}\", \"{}\", \"{}\", \"{}\")"
 
+# from https://plants.sc.egov.usda.gov/downloads
 with open("plantlst.txt", "r", encoding="utf-8") as plants:
     i = 0
     lines = plants.readlines()
