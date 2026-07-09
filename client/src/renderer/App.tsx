@@ -1,20 +1,14 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { useState } from 'react';
-import axios from 'axios';
+import PlantSearchForm from '../app/components/plant_search_form';
 
 function Hello() {
-  const [message, setMessage] = useState("");
+
   return (
     <div>
       <h1>Plant Management</h1>
-      <p>{message} </p>
-      <button onClick={() => {
-        axios.get("http://[::1]:8080/plant").then((response) => {
-          console.log(response.data);
-          setMessage(JSON.stringify(response.data));
-        }).catch((err) => {setMessage(err.message)});
-      }}>Make Request</button>
+
+      <PlantSearchForm></PlantSearchForm>
     </div>
   );
 }
