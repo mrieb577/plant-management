@@ -4,7 +4,10 @@ A fork of the [Electron React Boilerplate](https://github.com/electron-react-boi
 
 `mvn spring-boot:run`
 `npm start`
+
 `mysql -u root -p`
+
+`mariadbd --console`
 
 ## Roadmap
 
