@@ -1,17 +1,21 @@
 import { SetStateAction, useState } from "react";
-import { Plant } from "../data/plant";
+import { Plant, PlantParameter } from "../data/plant";
 
-export function AddPlantForm({pd}){
+export function AddPlantForm({ pd } : PlantParameter){
   pd = pd as Plant;
   const [expanded, setExpanded] = useState(false);
 
   const [state, setState] = useState({});
 
-  function handleChange(event){
-    setNotes(event.target.value)
+  function handleChange(event : any){
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    setState({ ...state, [name]: value });
   }
 
-  function handleSubmit(event){
+  function handleSubmit(event : any){
     event.preventDefault();
   }
 
