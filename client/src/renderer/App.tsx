@@ -15,7 +15,6 @@ function Landing() {
   )
 }
 
-
 function Login(){
   return (
     <div>
