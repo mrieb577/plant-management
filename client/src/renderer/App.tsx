@@ -2,6 +2,8 @@ import { MemoryRouter as Router, Routes, Route, BrowserRouter } from 'react-rout
 import './App.css';
 import PlantSearchForm from '../app/components/add_plants/plant_search_form';
 import Header from '../app/components/header';
+import MyPlantsPage from '../app/components/view_plants/myplants_page';
+import SearchPage from '../app/components/add_plants/search_page';
 
 function Landing() {
   return (
@@ -13,14 +15,13 @@ function Landing() {
   )
 }
 
-function Search() {
+
+function Login(){
   return (
     <div>
-      <h1>Plant Search</h1>
-
-      <PlantSearchForm></PlantSearchForm>
+      <h1>Log In</h1>
     </div>
-  );
+  )
 }
 
 export default function App() {
@@ -29,7 +30,9 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/myplants" element={<MyPlantsPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
