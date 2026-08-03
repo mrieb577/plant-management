@@ -9,3 +9,7 @@ export type Plant = {
   sun_requirement: string;
   water_requirement: string;
 }
+
+export interface PlantParameter {
+  pd: Plant | null;
+}
