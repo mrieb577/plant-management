@@ -1,8 +1,7 @@
-import type { Plant } from "../data/plant";
+import type { Plant, PlantParameter } from "../data/plant";
 import "./plant_display.css"
 
-export default function PlantDisplay({pd}){
-  pd = pd as Plant;
+export default function PlantDisplay({ pd } : PlantParameter){
   if(pd != null){
     return(<div>
       <p>
