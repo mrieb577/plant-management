@@ -10,20 +10,23 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: client
+
     steps:
       - name: check out the code
         uses: actions/checkout@v4
-      
+
       - name: install node
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-
-      - name: enter the client folder
-        run: cd client
+          cache: 'npm'
+          cache-dependency-path: client/package-lock.json
 
       - name: install dependencies
         run: npm ci
 
       - name: run electron tests
-        run: npm test
+        run: xvfb-run --auto-servernum npm test

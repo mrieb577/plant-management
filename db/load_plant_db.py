@@ -1,7 +1,7 @@
 import mariadb
+import db_vars
 import sys
 import tqdm
-import db_vars
 import sqlite3
 import pandas as pd
 import math
