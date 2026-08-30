@@ -34,3 +34,4 @@ __pycache__/
 target/
 plants.db
 plantlst.txt
+application.properties
