@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.mrieb577.database.DatabaseConnection;
 import com.mrieb577.database.UsersDB;
+import com.mrieb577.responses.StringRequestResponse;
+import com.mrieb577.responses.RequestResponse;
 import com.mrieb577.user.AuthRequest;
 import com.mrieb577.user.JwtUtil;
 import com.mrieb577.user.UserInfo;
@@ -40,16 +43,18 @@ public class LoginEndpoint {
 
     @PostMapping("/generate-token") // aka login
     public String generateToken(@RequestBody AuthRequest authRequest){
+        Gson gson = new Gson();
         try{
             Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authRequest.username, authRequest.password)
             );
             if(authentication.isAuthenticated()){
-                return jwtUtil.generateToken(authRequest.username);
+                String token = jwtUtil.generateToken(authRequest.username);
+                return gson.toJson(new StringRequestResponse(RequestResponse.SUCCESS_CODE, token));
             }
-            return "Access denied";
+            return gson.toJson(new StringRequestResponse(RequestResponse.ACCESS_DENIED_CODE, "Access denied"));
         } catch (Exception e){
-            return "Access denied";
+            return gson.toJson(new StringRequestResponse(RequestResponse.ACCESS_DENIED_CODE, "Access denied"));
         }
     }
 }

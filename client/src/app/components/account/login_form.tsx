@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function LoginForm(){
   const [message, setMessage] = useState("");
+  const [token, setToken] = useState("");
 
   function handleSubmit(event : any){
     event.preventDefault();
@@ -20,14 +21,26 @@ export default function LoginForm(){
       }
     ).then((response) => {
       console.log(response);
-      localStorage.setItem('token', response.data);
+      if(response.data.code == 200){
+        localStorage.setItem('token', response.data.body);
+        setToken(response.data.body);
+      } else {
+        setMessage("Email or password do not match an existing account. Did you mean to sign up?");
+      }
     }).catch((err) => {setMessage(err.message)});
   }
 
+  function logout(){
+    setToken('');
+    localStorage.setItem('token', '');
+  }
+
   return (<div>
-    { localStorage.getItem('token') ?
+    <p>{message}</p>
+    { token ?
         (<div>
-          <p>Current token is {localStorage.getItem('token')}</p>
+          <p>Current token is {token}</p>
+          <button onClick={logout}>Log out</button>
         </div>)
       :
       (<form onSubmit={handleSubmit}>
