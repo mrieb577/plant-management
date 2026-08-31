@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.mrieb577.database.DatabaseConnection;
 import com.mrieb577.database.UsersDB;
-import com.mrieb577.responses.StringRequestResponse;
+import com.mrieb577.responses.LoginRequestResponse;
 import com.mrieb577.responses.RequestResponse;
 import com.mrieb577.user.AuthRequest;
 import com.mrieb577.user.JwtUtil;
@@ -49,12 +49,14 @@ public class LoginEndpoint {
                 new UsernamePasswordAuthenticationToken(authRequest.username, authRequest.password)
             );
             if(authentication.isAuthenticated()){
+                DatabaseConnection connection = new DatabaseConnection();
+                UserInfo user = UsersDB.getUserByEmail(connection, authRequest.username);
                 String token = jwtUtil.generateToken(authRequest.username);
-                return gson.toJson(new StringRequestResponse(RequestResponse.SUCCESS_CODE, token));
+                return gson.toJson(new LoginRequestResponse(RequestResponse.SUCCESS_CODE, token, user));
             }
-            return gson.toJson(new StringRequestResponse(RequestResponse.ACCESS_DENIED_CODE, "Access denied"));
+            return gson.toJson(new LoginRequestResponse(RequestResponse.ACCESS_DENIED_CODE, "Access denied", null));
         } catch (Exception e){
-            return gson.toJson(new StringRequestResponse(RequestResponse.ACCESS_DENIED_CODE, "Access denied"));
+            return gson.toJson(new LoginRequestResponse(RequestResponse.ACCESS_DENIED_CODE, "Access denied", null));
         }
     }
 }
