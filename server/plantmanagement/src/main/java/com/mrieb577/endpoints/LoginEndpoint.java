@@ -36,7 +36,8 @@ public class LoginEndpoint {
     @PostMapping("/add-user")
     public String addUser(@RequestBody UserInfo userInfo){
         DatabaseConnection connection = new DatabaseConnection();
-        if(UsersDB.getUserByEmail(connection, userInfo.getEmail()) == null)
+        // check that the email does not exist in the database
+        if(UsersDB.getUserByEmail(connection, userInfo.getEmail()).email == null)
             return userDetailsService.addUser(userInfo);
         else return "User already exists with this email!";
     }
