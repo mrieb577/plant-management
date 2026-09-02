@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mrieb577.login.UserInfo;
-import com.mrieb577.plants.PlantIntake;
+import com.mrieb577.plants.UserPlant;
 
 public class UserPlantsDB {
     private static Logger log = LoggerFactory.getLogger(UserPlantsDB.class);
@@ -12,7 +12,7 @@ public class UserPlantsDB {
     private static final String TABLE = "userplants";
     private static final String ADD_COLUMNS = "nickname,notes,is_indoor,water_interval,water_quantity_ml,last_watered,fertilize_interval,last_fertilized,date_acquired,location,user_id,plant_id";
 
-    public static String add(DatabaseConnection conn, PlantIntake plant, UserInfo user){
+    public static String add(DatabaseConnection conn, UserPlant plant, UserInfo user){
         log.info("Adding plant {} for user {}", plant.plant_id, user.user_id);
         String query = "insert into " + TABLE + " (" + ADD_COLUMNS + ") values (" +
             plant.nickname + ", " +

@@ -16,7 +16,7 @@ import com.mrieb577.database.PlantsDB;
 import com.mrieb577.database.UserPlantsDB;
 import com.mrieb577.database.UsersDB;
 import com.mrieb577.login.UserInfo;
-import com.mrieb577.plants.PlantIntake;
+import com.mrieb577.plants.UserPlant;
 import com.mrieb577.plants.PlantQueryResult;
 import com.mrieb577.plants.Plants;
 
@@ -42,7 +42,7 @@ public class PlantsEndpoint {
     }
 
     @PostMapping("/add")
-    public String addPlant(@RequestBody PlantIntake plant, Authentication authentication){
+    public String addPlant(@RequestBody UserPlant plant, Authentication authentication){
         DatabaseConnection db = new DatabaseConnection();
         log.info("authentication - {}", authentication.toString());
         UserInfo currentUser = UsersDB.getUserByEmail(db, authentication.getName());
