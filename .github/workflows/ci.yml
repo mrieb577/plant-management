@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  client-test:
     runs-on: ubuntu-latest
 
     defaults:
@@ -30,3 +30,24 @@ jobs:
 
       - name: run electron tests
         run: xvfb-run --auto-servernum npm test
+
+  server-test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: server/plantmanagement
+
+    steps:
+      - name: check out the code
+        uses: actions/checkout@v4
+
+      - name: install java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: run server tests
+        run: mvn --batch-mode test

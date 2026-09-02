@@ -1,4 +1,4 @@
-package com.mrieb577.user;
+package com.mrieb577.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;

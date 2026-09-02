@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mrieb577.user.UserInfo;
+import com.mrieb577.login.UserInfo;
 
 public class UsersDB {
     private static Logger log = LoggerFactory.getLogger(UsersDB.class);

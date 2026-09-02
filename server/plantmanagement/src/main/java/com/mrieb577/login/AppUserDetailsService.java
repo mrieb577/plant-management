@@ -1,4 +1,4 @@
-package com.mrieb577.user;
+package com.mrieb577.login;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
