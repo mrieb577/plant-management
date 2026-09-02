@@ -18,20 +18,4 @@ public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
-
-    @GetMapping("/plants")
-    public String plant(@RequestParam(value = "search", defaultValue = "") String search){
-        Gson gson = new Gson();
-        DatabaseConnection db = new DatabaseConnection();
-        Plants ps;
-        if(search.length() < 2){
-            ps = PlantsDB.fetch_all(db);
-        } else {
-            ps = PlantsDB.search_for_plant(db, search);
-            if(ps.size() == 0) ps = PlantsDB.fetch_all(db);
-        }
-        db.close();
-        PlantQueryResult p = new PlantQueryResult(ps);
-        return gson.toJson(p);
-    }
 }

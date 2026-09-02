@@ -9,7 +9,7 @@ export default function LoginPage(){
   return (
     <div>
       <h1>Log In</h1>
-      { !create && localStorage.getItem('token') ?
+      { !create ?
         <div>
           <LoginForm />
           <button onClick={() => setCreate(true)}>Create Account</button>

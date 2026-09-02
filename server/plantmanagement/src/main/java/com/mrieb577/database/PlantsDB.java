@@ -13,12 +13,12 @@ import com.mrieb577.plants.Plants;
 public class PlantsDB {
     private static Logger log = LoggerFactory.getLogger(PlantsDB.class);
 
-    private static final String COLUMNS = "symbol,scientific_name,author,common_name,family,image_url,sun_requirement,water_requirement";
+    private static final String COLUMNS = "plant_id,symbol,scientific_name,author,common_name,family,image_url,sun_requirement,water_requirement";
     private static final String SEARCH_COLUMNS = "symbol,scientific_name,common_name,family";
     private static final String TABLE = "plants";
     
     public static Plants fetch_all(DatabaseConnection conn){
-        return query(conn, "select " + COLUMNS + " from " + TABLE);
+        return search_query(conn, "select " + COLUMNS + " from " + TABLE);
     }
     
     public static Plants search_for_plant(DatabaseConnection conn, String val){
@@ -30,10 +30,10 @@ public class PlantsDB {
             query += col + " like '%" + val + "%' ";
             if(index < cols.length) query += "or ";
         }
-        return query(conn, query);
+        return search_query(conn, query);
     }
 
-    private static Plants query(DatabaseConnection conn, String query){
+    private static Plants search_query(DatabaseConnection conn, String query){
         String[] cols = COLUMNS.split(",");
         Plants result = new Plants();
         try {
