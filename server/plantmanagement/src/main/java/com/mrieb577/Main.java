@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.mrieb577.database.DatabaseConnection;
 import com.mrieb577.database.PlantsDB;
-import com.mrieb577.objects.PlantQueryResult;
-import com.mrieb577.objects.Plants;
+import com.mrieb577.plants.PlantQueryResult;
+import com.mrieb577.plants.Plants;
 
 @SpringBootApplication
 @RestController
@@ -19,13 +19,7 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-    // https://spring.io/guides/gs/rest-service-cors
-    @GetMapping("/hello")
-    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return String.format("Hello %s!", name);
-    }
-
-    @GetMapping("/plant")
+    @GetMapping("/plants")
     public String plant(@RequestParam(value = "search", defaultValue = "") String search){
         Gson gson = new Gson();
         DatabaseConnection db = new DatabaseConnection();

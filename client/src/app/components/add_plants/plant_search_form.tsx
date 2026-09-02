@@ -4,6 +4,7 @@ import PlantDisplay from "./plant_display";
 import type { Plant } from "../../data/plant";
 import "./plant_search_form.css"
 import { AddPlantForm } from "./add_plant_form";
+import GetRequestHeaders from "../request_headers";
 
 export default function PlantSearchForm(){
   const [message, setMessage] = useState("");
@@ -14,8 +15,10 @@ export default function PlantSearchForm(){
   const [resultIndex, setResultIndex] = useState(0);
 
   function makeServerRequest(){
-    axios.get(`http://localhost:8080/plant?search=${search}`).then((response) => {
-      console.log(response.data);
+    setMessage("");
+    const headers = GetRequestHeaders();
+    axios.get(`http://localhost:8080/plants?search=${search}`, {...headers}).then((response) => {
+      console.log(response);
       setResults(response.data.results as Plant[]);
       setResultSize(response.data.count);
       setResultIndex(0);
@@ -36,7 +39,7 @@ export default function PlantSearchForm(){
             if(resultIndex < resultSize) setResultIndex(resultIndex + 1);
             if(resultIndex >= resultSize - 1) setResultIndex(0);
           }}>&gt;&gt;</button>
-
+          <br /> <br />
           <AddPlantForm pd={results ? results[resultIndex] : null}></AddPlantForm>
         </div>
       }

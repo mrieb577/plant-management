@@ -1,4 +1,4 @@
-package com.mrieb577.objects;
+package com.mrieb577.plants;
 
 import java.util.HashMap;
 

@@ -7,8 +7,8 @@ import java.sql.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mrieb577.objects.Plant;
-import com.mrieb577.objects.Plants;
+import com.mrieb577.plants.Plant;
+import com.mrieb577.plants.Plants;
 
 public class PlantsDB {
     private static Logger log = LoggerFactory.getLogger(PlantsDB.class);
