@@ -1,6 +1,6 @@
 package com.mrieb577.responses;
 
-import com.mrieb577.user.UserInfo;
+import com.mrieb577.login.UserInfo;
 
 public class LoginRequestResponse extends RequestResponse {
     public String token;

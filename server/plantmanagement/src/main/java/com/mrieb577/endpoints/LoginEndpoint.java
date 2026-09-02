@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.mrieb577.database.DatabaseConnection;
 import com.mrieb577.database.UsersDB;
+import com.mrieb577.login.AuthRequest;
+import com.mrieb577.login.JwtUtil;
+import com.mrieb577.login.UserInfo;
+import com.mrieb577.login.UserInfoService;
 import com.mrieb577.responses.LoginRequestResponse;
 import com.mrieb577.responses.RequestResponse;
-import com.mrieb577.user.AuthRequest;
-import com.mrieb577.user.JwtUtil;
-import com.mrieb577.user.UserInfo;
-import com.mrieb577.user.UserInfoService;
 
 @RestController
 @RequestMapping("/account")

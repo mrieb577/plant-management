@@ -1,4 +1,4 @@
-package com.mrieb577.user;
+package com.mrieb577.login;
 
 import java.util.Collection;
 import java.util.List;

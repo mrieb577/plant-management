@@ -20,8 +20,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.mrieb577.user.AppUserDetailsService;
-import com.mrieb577.user.JwtFilter;
+import com.mrieb577.login.AppUserDetailsService;
+import com.mrieb577.login.JwtFilter;
 
 @Configuration
 @EnableWebSecurity
