@@ -31,7 +31,13 @@ export default function CreateAccountForm(){
   function handleSubmit(event: any){
     event.preventDefault();
     console.log(state);
-    if(confirmPassword === state.password){
+
+    var populated = true;
+    for(const[key, value] of Object.entries(state)){
+      if(!value) populated = false;
+    }
+
+    if(confirmPassword === state.password && populated){
       console.log("Can register new user");
       setPasswordGood(true);
 
@@ -58,7 +64,7 @@ export default function CreateAccountForm(){
         console.log(response);
       }).catch((err) => {console.error(err.message)});
     } else {
-      console.log("Passwords do not match");
+      console.log("Passwords do not match or one or more fields is empty");
       setPasswordGood(false);
     }
   }

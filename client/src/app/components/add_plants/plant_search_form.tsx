@@ -17,7 +17,7 @@ export default function PlantSearchForm(){
   function makeServerRequest(){
     setMessage("");
     const headers = GetRequestHeaders();
-    axios.get(`http://localhost:8080/plants?search=${search}`, {...headers}).then((response) => {
+    axios.get(`http://localhost:8080/plants/search?val=${search}`, {...headers}).then((response) => {
       console.log(response);
       setResults(response.data.results as Plant[]);
       setResultSize(response.data.count);

@@ -1,11 +1,17 @@
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { Plant, PlantParameter } from "../../data/plant";
+import GetRequestHeaders from "../request_headers";
+import axios from "axios";
 
 export function AddPlantForm({ pd } : PlantParameter){
   pd = pd as Plant;
   const [expanded, setExpanded] = useState(false);
 
   const [state, setState] = useState({});
+
+  useEffect(() => {
+    setState({ ...state, ['plant_id']: pd?.plant_id});
+  }, []);
 
   function handleChange(event : any){
     const target = event.target;
@@ -18,6 +24,11 @@ export function AddPlantForm({ pd } : PlantParameter){
   function handleSubmit(event : any){
     event.preventDefault();
     console.log(state);
+
+    var headers = GetRequestHeaders();
+    axios.post("http://localhost:8080/plants/add", state, {...headers}).then((response) => {
+      console.log(response);
+    }).catch((err) => {console.error(err.message)});
   }
 
   if(!expanded){
@@ -33,6 +44,7 @@ export function AddPlantForm({ pd } : PlantParameter){
       <form onSubmit={handleSubmit}>
         <label> Nickname: <input type="text" name="nickname" onChange={handleChange} /> </label> <br/>
         <label> Date Acquired: <input type="date" name="dateAcquired" onChange={handleChange} /> </label> <br/>
+        <label> Where is this plant located? <input type="text" name="location" onChange={handleChange} /> </label>
         <label> Indoor? <input type="checkbox" name="isIndoor" onChange={handleChange} /> </label> <br/>
         <div>
           <label> Last Watered: <input type="date" name="lastWatered" onChange={handleChange} /> | </label>

@@ -10,15 +10,13 @@ import javax.crypto.SecretKey;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import com.mrieb577.database.Credentials;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtUtil {
-    private Credentials credentials = new Credentials();
+    private String JwtSecret = "YkIjWO3rkGPF3FPIrMNqi0hvkiJOcyMqVSpxEW6IgGt";
 
     // to summarize this class for myself:
     // we take a map of claims (aka headers for json wrapped tokens - jwts), one of which is the subject (username)
@@ -31,7 +29,7 @@ public class JwtUtil {
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
-        SecretKey secretKey = Keys.hmacShaKeyFor(credentials.JwtSecret.getBytes());
+        SecretKey secretKey = Keys.hmacShaKeyFor(JwtSecret.getBytes());
         Date issuedAt = new Date();
         Date expiration = new Date(System.currentTimeMillis() + 1000 * 60 * 30); // 30 minutes
 
@@ -58,7 +56,7 @@ public class JwtUtil {
     }
 
     private Claims extractAllClaims(String jwt) {
-        SecretKey secretKey = Keys.hmacShaKeyFor(credentials.JwtSecret.getBytes());
+        SecretKey secretKey = Keys.hmacShaKeyFor(JwtSecret.getBytes());
         return Jwts.parser()
                 .verifyWith(secretKey)
                 .build()

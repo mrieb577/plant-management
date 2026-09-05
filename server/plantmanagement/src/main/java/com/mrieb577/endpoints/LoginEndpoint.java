@@ -1,5 +1,7 @@
 package com.mrieb577.endpoints;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +24,8 @@ import com.mrieb577.responses.RequestResponse;
 @RestController
 @RequestMapping("/account")
 public class LoginEndpoint {
+    private static Logger log = LoggerFactory.getLogger(LoginEndpoint.class);
+
     private final UserInfoService userDetailsService;
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
@@ -37,7 +41,9 @@ public class LoginEndpoint {
     public String addUser(@RequestBody UserInfo userInfo){
         DatabaseConnection connection = new DatabaseConnection();
         // check that the email does not exist in the database
-        if(UsersDB.getUserByEmail(connection, userInfo.getEmail()).email == null)
+        UserInfo user = UsersDB.getUserByEmail(connection, userInfo.getEmail());
+        log.info("found user id - {}", user.user_id);
+        if(user.email == null)
             return userDetailsService.addUser(userInfo);
         else return "User already exists with this email!";
     }

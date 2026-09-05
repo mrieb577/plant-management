@@ -33,7 +33,10 @@ public class SecurityConfig {
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/plants", "/hello", "/account", "/account/generate-token", "/account/add-user").permitAll()
+                .requestMatchers(
+                    "/account", "/account/generate-token", "/account/add-user", 
+                    "/plants", "/plants/search", "/plants/add"
+                ).permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
